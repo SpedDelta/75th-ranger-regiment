@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chain of Command | 75th Ranger Regiment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --regiment-black: #050505;
+            --bone: #e2e2e2;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--regiment-black);
+            color: var(--bone);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-oswald { font-family: 'Oswald', sans-serif; }
+        .font-mono-tactical { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 2px; }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(0,0,0,0.9);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            height: 60px; /* Increased size of the logo */
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .header-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Oswald';
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            margin-left: 2rem;
+        }
+
+        .page-header {
+            padding: 100px 8% 50px 8%;
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 40px;
+            left: -20px;
+            font-size: 15rem;
+            font-family: 'Oswald';
+            font-weight: 700;
+            color: rgba(255,255,255,0.025);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .command-tier { 
+            margin-bottom: 80px; 
+            max-width: 1400px; 
+            margin-left: auto; 
+            margin-right: auto;
+            padding: 0 5%;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .section-label h2 {
+            color: var(--gold);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            margin: 0;
+        }
+
+        .gold-rule { height: 1px; background: rgba(212, 175, 55, 0.2); flex: 1; }
+
+        .personnel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        @media (max-width: 1024px) {
+            .personnel-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .personnel-grid { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background: #121212;
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+        }
+
+        .portrait-area {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 90% 100%, 0 100%);
+        }
+
+        .portrait-placeholder {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.1);
+            font-size: 1.5rem;
+        }
+
+        .card-info {
+            padding: 25px 20px;
+            background: #161616;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: #4ade80;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        footer {
+            padding: 80px 10%;
+            background: #000;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1000px;
+            margin: 40px auto;
+            gap: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div style="display: flex; align-items: center;">
+            <a href="rangers.html">
+                <img src="ArmyLogoButton.png" alt="US Army Logo" class="header-logo">
+            </a>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="#">MISSION</a>
+            <a href="rangers3.html">SELECTION</a>
+            <a href="leadership.html" style="color: var(--gold);">LEADERSHIP</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="watermark">COMMAND</div>
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                <span class="font-mono-tactical" style="color: var(--gold); font-size: 10px;">COMMAND GRID // PERSONNEL ROSTER</span>
+                <div style="height: 1px; background: rgba(212,175,55,0.2); flex: 1;"></div>
+            </div>
+            <h1 class="font-oswald" style="font-size: clamp(3rem, 8vw, 5rem); margin: 0; color: white;">CHAIN OF <span style="color: var(--gold);">COMMAND</span></h1>
+        </section>
+
+        <section class="command-tier">
+            <div class="section-label">
+                <h2 class="font-mono-tactical">REGIMENTAL HEADQUARTERS (RHQ)</h2>
+                <div class="gold-rule"></div>
+            </div>
+            <div class="personnel-grid">
+                <div class="card">
+                    <div class="portrait-area"><div class="portrait-placeholder">P</div></div>
+                    <div class="card-info">
+                        <div class="font-mono-tactical" style="color: var(--gold); font-size: 10px;">COL</div>
+                        <div class="font-oswald" style="font-size: 1.4rem; color: white; margin: 5px 0;">fend_er</div>
+                        <div class="font-mono-tactical" style="font-size: 10px; opacity: 0.5;">Commanding Officer</div>
+                        <div class="font-mono-tactical" style="font-size: 9px; color: #4ade80; margin-top: 10px;"><span class="status-dot"></span>ACTIVE DUTY</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="portrait-area"><div class="portrait-placeholder">P</div></div>
+                    <div class="card-info">
+                        <div class="font-mono-tactical" style="color: var(--gold); font-size: 10px;">LTC</div>
+                        <div class="font-oswald" style="font-size: 1.4rem; color: white; margin: 5px 0;">ty_Ienol</div>
+                        <div class="font-mono-tactical" style="font-size: 10px; opacity: 0.5;">Executive Officer</div>
+                        <div class="font-mono-tactical" style="font-size: 9px; color: #4ade80; margin-top: 10px;"><span class="status-dot"></span>ACTIVE DUTY</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="portrait-area"><div class="portrait-placeholder">P</div></div>
+                    <div class="card-info">
+                        <div class="font-mono-tactical" style="color: var(--gold); font-size: 10px;">CSM</div>
+                        <div class="font-oswald" style="font-size: 1.4rem; color: white; margin: 5px 0;">CySwisher</div>
+                        <div class="font-mono-tactical" style="font-size: 10px; opacity: 0.5;">Command Sergeant Major</div>
+                        <div class="font-mono-tactical" style="font-size: 9px; color: #4ade80; margin-top: 10px;"><span class="status-dot"></span>ACTIVE DUTY</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="command-tier">
+            <div class="section-label">
+                <h2 class="font-mono-tactical">2ND BN — ALPHA COMPANY HQ</h2>
+                <div class="gold-rule"></div>
+            </div>
+            <div class="personnel-grid">
+                <div class="card">
+                    <div class="portrait-area"><div class="portrait-placeholder">P</div></div>
+                    <div class="card-info">
+                        <div class="font-mono-tactical" style="color: var(--gold); font-size: 10px;">CPT</div>
+                        <div class="font-oswald" style="font-size: 1.4rem; color: white; margin: 5px 0;">N/A</div>
+                        <div class="font-mono-tactical" style="font-size: 10px; opacity: 0.5;">Company Commander</div>
+                        <div class="font-mono-tactical" style="font-size: 9px; color: #4ade80; margin-top: 10px;"><span class="status-dot"></span>INACTIVE</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="portrait-area"><div class="portrait-placeholder">P</div></div>
+                    <div class="card-info">
+                        <div class="font-mono-tactical" style="color: var(--gold); font-size: 10px;">1LT</div>
+                        <div class="font-oswald" style="font-size: 1.4rem; color: white; margin: 5px 0;">MericaHavoc</div>
+                        <div class="font-mono-tactical" style="font-size: 10px; opacity: 0.5;">Executive Officer</div>
+                        <div class="font-mono-tactical" style="font-size: 9px; color: #4ade80; margin-top: 10px;"><span class="status-dot"></span>ACTIVE DUTY</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="portrait-area"><div class="portrait-placeholder">P</div></div>
+                    <div class="card-info">
+                        <div class="font-mono-tactical" style="color: var(--gold); font-size: 10px;">1SG</div>
+                        <div class="font-oswald" style="font-size: 1.4rem; color: white; margin: 5px 0;">PLACEHOLDER_1SG</div>
+                        <div class="font-mono-tactical" style="font-size: 10px; opacity: 0.5;">First Sergeant</div>
+                        <div class="font-mono-tactical" style="font-size: 9px; color: #4ade80; margin-top: 10px;"><span class="status-dot"></span>ACTIVE DUTY</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="command-tier">
+            <div class="section-label">
+                <h2 class="font-mono-tactical">RANGER SELECTION & TRAINING COMPANY (RSTC)</h2>
+                <div class="gold-rule"></div>
+            </div>
+            <div class="personnel-grid">
+                <div class="card">
+                    <div class="portrait-area"><div class="portrait-placeholder">P</div></div>
+                    <div class="card-info">
+                        <div class="font-mono-tactical" style="color: var(--gold); font-size: 10px;">MAJ</div>
+                        <div class="font-oswald" style="font-size: 1.4rem; color: white; margin: 5px 0;">PLACEHOLDER_CO</div>
+                        <div class="font-mono-tactical" style="font-size: 10px; opacity: 0.5;">Commanding Officer</div>
+                        <div class="font-mono-tactical" style="font-size: 9px; color: #4ade80; margin-top: 10px;"><span class="status-dot"></span>ACTIVE DUTY</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="portrait-area"><div class="portrait-placeholder">P</div></div>
+                    <div class="card-info">
+                        <div class="font-mono-tactical" style="color: var(--gold); font-size: 10px;">CPT</div>
+                        <div class="font-oswald" style="font-size: 1.4rem; color: white; margin: 5px 0;">PLACEHOLDER_XO</div>
+                        <div class="font-mono-tactical" style="font-size: 10px; opacity: 0.5;">Executive Officer</div>
+                        <div class="font-mono-tactical" style="font-size: 9px; color: #4ade80; margin-top: 10px;"><span class="status-dot"></span>ACTIVE DUTY</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="portrait-area"><div class="portrait-placeholder">P</div></div>
+                    <div class="card-info">
+                        <div class="font-mono-tactical" style="color: var(--gold); font-size: 10px;">MSG</div>
+                        <div class="font-oswald" style="font-size: 1.4rem; color: white; margin: 5px 0;">PLACEHOLDER_NCOIC</div>
+                        <div class="font-mono-tactical" style="font-size: 10px; opacity: 0.5;">First Sergeant / NCOIC</div>
+                        <div class="font-mono-tactical" style="font-size: 9px; color: #4ade80; margin-top: 10px;"><span class="status-dot"></span>ACTIVE DUTY</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="command-tier">
+            <div class="section-label">
+                <h2 class="font-mono-tactical">REGIMENTAL RECONNAISSANCE COMPANY (RRC)</h2>
+                <div class="gold-rule"></div>
+            </div>
+            <div class="personnel-grid">
+                <div class="card">
+                    <div class="portrait-area"><div class="portrait-placeholder">P</div></div>
+                    <div class="card-info">
+                        <div class="font-mono-tactical" style="color: var(--gold); font-size: 10px;">MAJ</div>
+                        <div class="font-oswald" style="font-size: 1.4rem; color: white; margin: 5px 0;">PLACEHOLDER_CO</div>
+                        <div class="font-mono-tactical" style="font-size: 10px; opacity: 0.5;">Commanding Officer</div>
+                        <div class="font-mono-tactical" style="font-size: 9px; color: #4ade80; margin-top: 10px;"><span class="status-dot"></span>ACTIVE DUTY</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="portrait-area"><div class="portrait-placeholder">P</div></div>
+                    <div class="card-info">
+                        <div class="font-mono-tactical" style="color: var(--gold); font-size: 10px;">CPT</div>
+                        <div class="font-oswald" style="font-size: 1.4rem; color: white; margin: 5px 0;">PLACEHOLDER_XO</div>
+                        <div class="font-mono-tactical" style="font-size: 10px; opacity: 0.5;">Executive Officer</div>
+                        <div class="font-mono-tactical" style="font-size: 9px; color: #4ade80; margin-top: 10px;"><span class="status-dot"></span>ACTIVE DUTY</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="portrait-area"><div class="portrait-placeholder">P</div></div>
+                    <div class="card-info">
+                        <div class="font-mono-tactical" style="color: var(--gold); font-size: 10px;">MSG</div>
+                        <div class="font-oswald" style="font-size: 1.4rem; color: white; margin: 5px 0;">PLACEHOLDER_NCOIC</div>
+                        <div class="font-mono-tactical" style="font-size: 10px; opacity: 0.5;">First Sergeant / NCOIC</div>
+                        <div class="font-mono-tactical" style="font-size: 9px; color: #4ade80; margin-top: 10px;"><span class="status-dot"></span>ACTIVE DUTY</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<footer style="padding: 100px 10% 40px 10%; background: #000; border-top: 1px solid rgba(212, 175, 55, 0.3); color: #888; font-family: 'Inter', sans-serif; font-size: 0.85rem;">
+        
+        <div style="text-align: center; margin-bottom: 60px;">
+            <p class="font-oswald" style="color: var(--gold); font-weight: 700; letter-spacing: 4px; margin-bottom: 10px; font-size: 1.2rem; text-transform: uppercase;">
+                75th Ranger Regiment
+            </p>
+            <p class="font-mono-tactical" style="margin: 0; opacity: 0.5; letter-spacing: 2px; font-size: 10px;">
+                © 2026 75th Ranger Regiment. All rights reserved.
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; max-width: 1000px; margin: 0 auto; gap: 50px; border-top: 1px solid rgba(212, 175, 55, 0.1); padding-top: 40px;">
+            
+            <div style="text-align: center; border-right: 1px solid rgba(255, 255, 255, 0.05);">
+                <h4 class="font-oswald" style="color: var(--gold); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px; font-weight: 700;">Regimental Headquarters</h4>
+                <p style="margin: 5px 0; color: var(--bone); opacity: 0.8;">6420 Sleaford St</p>
+                <p style="margin: 5px 0; color: var(--bone); opacity: 0.8;">Fort Moore, GA 31905</p>
+                <p class="font-mono-tactical" style="margin: 15px 0 5px 0; color: #666; font-size: 11px;"><span style="color: var(--gold);">P:</span> (706) 545-5111</p>
+                <p class="font-mono-tactical" style="margin: 5px 0; color: #666; font-size: 11px;"><span style="color: var(--gold);">E:</span> 75th.regt.hq@rangers.mil.io</p>
+            </div>
+
+            <div style="text-align: center;">
+                <h4 class="font-oswald" style="color: var(--gold); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px; font-weight: 700;">2nd Ranger Battalion</h4>
+                <p style="margin: 5px 0; color: var(--bone); opacity: 0.8;">11575 17th Ave NE</p>
+                <p style="margin: 5px 0; color: var(--bone); opacity: 0.8;">JBLM, WA 98433</p>
+                <p class="font-mono-tactical" style="margin: 15px 0 5px 0; color: #666; font-size: 11px;"><span style="color: var(--gold);">P:</span> (253) 967-2850</p>
+                <p class="font-mono-tactical" style="margin: 5px 0; color: #666; font-size: 11px;"><span style="color: var(--gold);">E:</span> 2rb.jblm.ops@rangers.mil.io</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

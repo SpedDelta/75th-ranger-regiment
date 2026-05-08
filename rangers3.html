@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection & Requirements | 75th Ranger Regiment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --regiment-black: #050505;
+            --bone: #e2e2e2;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--regiment-black);
+            color: var(--bone);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-oswald { font-family: 'Oswald', sans-serif; }
+        .font-mono-tactical { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 2px; }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(0,0,0,0.9);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            height: 60px;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Oswald';
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            margin-left: 2rem;
+        }
+
+        /* Timeline Section Styles */
+        .timeline-section {
+            padding: 100px 8% 50px 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pipeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .rasp-card {
+            background: #0a0a0a;
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 40px 30px;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+            transition: border 0.3s ease;
+        }
+
+        .rasp-card:hover {
+            border-color: var(--gold);
+        }
+
+        .duration-tag {
+            font-family: 'JetBrains Mono';
+            color: var(--gold);
+            font-size: 0.7rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Requirements Section Styles */
+        .requirements-section {
+            padding: 80px 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .gold-rule { height: 1px; background: rgba(212, 175, 55, 0.2); flex: 1; }
+
+        .req-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .req-list { list-style: none; padding: 0; }
+        .req-item {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        .req-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .expectations-box {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 3px solid var(--gold);
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .apply-btn {
+            display: inline-block;
+            padding: 15px 80px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 4px;
+            transition: all 0.3s ease;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        }
+
+        .apply-btn:hover {
+            background: var(--gold);
+            color: black;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            transform: translateY(-3px);
+        }
+
+        footer {
+            padding: 80px 10%;
+            background: #000;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .req-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div style="display: flex; align-items: center;">
+            <a href="rangers.html">
+                <img src="ArmyLogoButton.png" alt="US Army Logo" class="header-logo">
+            </a>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="#">MISSION</a>
+            <a href="rangers3.html" style="color: var(--gold);">SELECTION</a>
+            <a href="leadership.html">LEADERSHIP</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="timeline-section">
+            <h1 class="font-oswald" style="font-size: clamp(2.5rem, 6vw, 4rem); color: white; margin-bottom: 10px;">THE PATH TO THE <span style="color: var(--gold);">SCROLL</span></h1>
+            <p style="opacity: 0.7; max-width: 650px; line-height: 1.6;">The selection pipeline is designed to eliminate those who cannot meet the Regiment's uncompromising standard.</p>
+            
+            <div class="pipeline-grid">
+                <div class="rasp-card">
+                    <span class="duration-tag">8 WEEKS</span>
+                    <h2 class="font-oswald" style="font-size: 2rem; margin: 0 0 15px 0;">RASP 1</h2>
+                    <p style="font-size: 0.9rem; opacity: 0.6;">The crucible. Physical and mental attrition. Candidates face relentless PT and land navigation.</p>
+                </div>
+
+                <div class="rasp-card">
+                    <span class="duration-tag">8 WEEKS</span>
+                    <h2 class="font-oswald" style="font-size: 2rem; margin: 0 0 15px 0;">RASP 2</h2>
+                    <p style="font-size: 0.9rem; opacity: 0.6;">Senior leader assessment. Tactical planning, mission briefs, and leadership under observation.</p>
+                </div>
+
+                <div class="rasp-card">
+                    <span class="duration-tag">4 WEEKS</span>
+                    <h2 class="font-oswald" style="font-size: 2rem; margin: 0 0 15px 0;">PRE-RANGER</h2>
+                    <p style="font-size: 0.9rem; opacity: 0.6;">Intensive internal program preparing candidates for Ranger School. Zero shortcuts.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="requirements-section">
+            <div class="section-label">
+                <h2 class="font-mono-tactical">MINIMUM ENTRY REQUIREMENTS</h2>
+                <div class="gold-rule"></div>
+            </div>
+            
+            <div class="req-grid">
+                <ul class="req-list">
+                    <li class="req-item">Minimum age requirement: 14+</li>
+                    <li class="req-item">Must hold rank of E-2 or higher within USAR</li>
+                    <li class="req-item">Must not be blacklisted by ASOC, 75th, or affiliated commands</li>
+                    <li class="req-item">Must possess prior Special Operations, reconnaissance, or tactical milsim experience</li>
+                    <li class="req-item">Must demonstrate maturity, professionalism, and discipline</li>
+                    <li class="req-item">Must maintain operational composure under pressure</li>
+                    <li class="req-item">Must be capable of functioning within a structured chain of command</li>
+                </ul>
+                
+                <ul class="req-list">
+                    <li class="req-item">Must possess clear and effective English communication skills</li>
+                    <li class="req-item">Must have a working microphone and reliable activity level</li>
+                    <li class="req-item">Must display initiative, adaptability, and willingness to improve</li>
+                    <li class="req-item">Must possess foundational tactical knowledge and battlefield awareness</li>
+                    <li class="req-item">Must be capable of operating effectively in small-team environments</li>
+                    <li class="req-item">Must successfully complete RASP and unit evaluation phases</li>
+                    <li class="req-item" style="color: #ff4d4d; opacity: 1;">Applicants with histories of misconduct or unit-hopping may be denied.</li>
+                </ul>
+            </div>
+
+            <div class="expectations-box">
+                <h3 class="font-oswald" style="color: var(--gold); margin-top: 0; letter-spacing: 1px;">CANDIDATE EXPECTATIONS</h3>
+                <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px;">Personnel selected for assessment are expected to uphold the standards of the Regiment at all times. Selection is based not only on skill, but consistency, professionalism, and teamwork.</p>
+                <p class="font-mono-tactical" style="font-size: 0.7rem; color: var(--gold);">FAILURE TO MAINTAIN STANDARDS MAY RESULT IN REMOVAL FROM PIPELINE.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 80px; padding-bottom: 100px;">
+                <a href="YOUR_GOOGLE_FORM_URL_HERE" target="_blank" class="apply-btn font-oswald">APPLY NOW</a>
+            </div>
+        </section>
+    </main>
+
+<footer style="padding: 100px 10% 40px 10%; background: #000; border-top: 1px solid rgba(212, 175, 55, 0.3); color: #888; font-family: 'Inter', sans-serif; font-size: 0.85rem;">
+        
+        <div style="text-align: center; margin-bottom: 60px;">
+            <p class="font-oswald" style="color: var(--gold); font-weight: 700; letter-spacing: 4px; margin-bottom: 10px; font-size: 1.2rem; text-transform: uppercase;">
+                75th Ranger Regiment
+            </p>
+            <p class="font-mono-tactical" style="margin: 0; opacity: 0.5; letter-spacing: 2px; font-size: 10px;">
+                © 2026 75th Ranger Regiment. All rights reserved.
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; max-width: 1000px; margin: 0 auto; gap: 50px; border-top: 1px solid rgba(212, 175, 55, 0.1); padding-top: 40px;">
+            
+            <div style="text-align: center; border-right: 1px solid rgba(255, 255, 255, 0.05);">
+                <h4 class="font-oswald" style="color: var(--gold); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px; font-weight: 700;">Regimental Headquarters</h4>
+                <p style="margin: 5px 0; color: var(--bone); opacity: 0.8;">6420 Sleaford St</p>
+                <p style="margin: 5px 0; color: var(--bone); opacity: 0.8;">Fort Moore, GA 31905</p>
+                <p class="font-mono-tactical" style="margin: 15px 0 5px 0; color: #666; font-size: 11px;"><span style="color: var(--gold);">P:</span> (706) 545-5111</p>
+                <p class="font-mono-tactical" style="margin: 5px 0; color: #666; font-size: 11px;"><span style="color: var(--gold);">E:</span> 75th.regt.hq@rangers.mil.io</p>
+            </div>
+
+            <div style="text-align: center;">
+                <h4 class="font-oswald" style="color: var(--gold); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px; font-weight: 700;">2nd Ranger Battalion</h4>
+                <p style="margin: 5px 0; color: var(--bone); opacity: 0.8;">11575 17th Ave NE</p>
+                <p style="margin: 5px 0; color: var(--bone); opacity: 0.8;">JBLM, WA 98433</p>
+                <p class="font-mono-tactical" style="margin: 15px 0 5px 0; color: #666; font-size: 11px;"><span style="color: var(--gold);">P:</span> (253) 967-2850</p>
+                <p class="font-mono-tactical" style="margin: 5px 0; color: #666; font-size: 11px;"><span style="color: var(--gold);">E:</span> 2rb.jblm.ops@rangers.mil.io</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
